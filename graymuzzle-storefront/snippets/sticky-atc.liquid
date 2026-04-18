@@ -1,0 +1,21 @@
+{%- comment -%}
+  Mobile sticky add-to-cart. Slides in once the main ATC scrolls off screen.
+  Usage: {% render 'sticky-atc', product: product %}
+{%- endcomment -%}
+<div class="sticky-atc" data-sticky-atc aria-hidden="true">
+  <div class="sticky-atc__inner">
+    {%- if product.featured_image -%}
+      <img src="{{ product.featured_image | image_url: width: 120 }}" alt="" width="48" height="48" loading="lazy">
+    {%- endif -%}
+    <div class="sticky-atc__info">
+      <p class="sticky-atc__title">{{ product.title | truncate: 32 }}</p>
+      <p class="sticky-atc__price">{{ product.selected_or_first_available_variant.price | money }}</p>
+    </div>
+    <form action="{{ routes.cart_add_url }}" method="post" data-ajax-cart>
+      <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+      <button type="submit" class="btn btn--primary btn--sticky">
+        Add to cart
+      </button>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,59 @@
+<section class="product container" data-section-id="{{ section.id }}">
+  <div class="product__grid">
+    <div class="product__media">
+      {%- for image in product.images -%}
+        <img src="{{ image | image_url: width: 1200 }}"
+             alt="{{ image.alt | escape }}"
+             loading="{% if forloop.first %}eager{% else %}lazy{% endif %}"
+             width="1200"
+             height="{{ 1200 | divided_by: image.aspect_ratio | round }}">
+      {%- endfor -%}
+    </div>
+
+    <div class="product__body">
+      <h1 class="product__title">{{ product.title }}</h1>
+      {% render 'price', product: product %}
+
+      <div class="product__stars" aria-label="4.8 stars">★★★★★ <span>4.8 (214 reviews)</span></div>
+
+      <form action="{{ routes.cart_add_url }}" method="post" class="product__form" data-ajax-cart>
+        {%- if product.has_only_default_variant == false -%}
+          {%- for option in product.options_with_values -%}
+            <label class="product__option">
+              <span>{{ option.name }}</span>
+              <select name="options[{{ option.name | escape }}]">
+                {%- for value in option.values -%}
+                  <option value="{{ value | escape }}">{{ value }}</option>
+                {%- endfor -%}
+              </select>
+            </label>
+          {%- endfor -%}
+        {%- endif -%}
+        <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+        <button type="submit" class="btn btn--primary btn--large btn--full" {% unless product.available %}disabled{% endunless %}>
+          {% if product.available %}Add to cart &middot; {{ product.selected_or_first_available_variant.price | money }}{% else %}Sold out{% endif %}
+        </button>
+      </form>
+
+      <ul class="product__trust">
+        <li>✓ Free US shipping $49+</li>
+        <li>✓ 30-day returns</li>
+        <li>✓ Vet-reviewed</li>
+        <li>✓ Ships in 1–2 business days</li>
+      </ul>
+
+      <div class="product__description rte">
+        {{ product.description }}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% render 'sticky-atc', product: product %}
+
+{% schema %}
+{
+  "name": "Product",
+  "settings": []
+}
+{% endschema %}

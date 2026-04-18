@@ -1,0 +1,45 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero-senior-dog",
+      "settings": {
+        "eyebrow": "For the dogs who raised us",
+        "heading": "Make his golden years his best.",
+        "subheading": "Orthopedic beds, mobility ramps, and vet-reviewed calm. Built for dogs 7+.",
+        "cta_text": "Shop senior essentials",
+        "cta_url": "/collections/all"
+      }
+    },
+    "featured": {
+      "type": "featured-collection",
+      "settings": {
+        "heading": "Best for senior dogs",
+        "subheading": "Vet-reviewed comfort, mobility, and calm",
+        "collection": "all",
+        "limit": 8
+      }
+    },
+    "testimonials": {
+      "type": "testimonials",
+      "blocks": {
+        "t1": { "type": "quote", "settings": { "quote": "Our 13-year-old Lab Bailey sleeps through the night for the first time in a year.", "author": "Megan H.", "dog": "Bailey, 13" } },
+        "t2": { "type": "quote", "settings": { "quote": "The car ramp gave us our weekend drives back. Duke used to refuse to get in.", "author": "Rick P.", "dog": "Duke, 11" } },
+        "t3": { "type": "quote", "settings": { "quote": "Calming vest worked the first thunderstorm. Finally.", "author": "Priya S.", "dog": "Mochi, 9" } }
+      },
+      "block_order": ["t1", "t2", "t3"],
+      "settings": { "heading": "From dog parents like you" }
+    },
+    "faq": {
+      "type": "faq",
+      "blocks": {
+        "q1": { "type": "qa", "settings": { "question": "When is a dog considered senior?", "answer": "<p>Most vets call a dog senior at age 7. Large breeds (Labs, Goldens, Great Danes) age faster and may benefit from orthopedic support as early as 5–6.</p>" } },
+        "q2": { "type": "qa", "settings": { "question": "How do I know if my dog needs an orthopedic bed?", "answer": "<p>Signs include: slower to rise, favoring one leg, restlessness at night, shifting positions often while lying down, or visible stiffness after naps.</p>" } },
+        "q3": { "type": "qa", "settings": { "question": "What's your shipping timeline?", "answer": "<p>Free on US orders $49+. Most items ship from US warehouses in 1–2 business days with delivery in 5–8 days total.</p>" } },
+        "q4": { "type": "qa", "settings": { "question": "Returns?", "answer": "<p>30-day satisfaction guarantee. If it doesn't work for your dog, email us and we'll make it right.</p>" } }
+      },
+      "block_order": ["q1", "q2", "q3", "q4"],
+      "settings": { "heading": "Questions dog parents ask" }
+    }
+  },
+  "order": ["hero", "featured", "testimonials", "faq"]
+}

@@ -1,0 +1,24 @@
+name: Deploy theme
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install Shopify CLI
+        run: npm i -g @shopify/cli @shopify/theme
+      - name: Push theme to live
+        env:
+          SHOPIFY_CLI_THEME_TOKEN: ${{ secrets.SHOPIFY_CLI_THEME_TOKEN }}
+          SHOPIFY_FLAG_STORE: ${{ secrets.SHOPIFY_FLAG_STORE }}
+        run: |
+          cd graymuzzle-storefront
+          shopify theme push --live --allow-live --json

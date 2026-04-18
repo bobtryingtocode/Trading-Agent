@@ -1,0 +1,15 @@
+{
+  "current": {
+    "color_primary": "#b7532c",
+    "color_accent": "#d6b48a",
+    "klaviyo_public_key": "",
+    "meta_pixel_id": "",
+    "tiktok_pixel_id": ""
+  },
+  "presets": {
+    "GrayMuzzle default": {
+      "color_primary": "#b7532c",
+      "color_accent": "#d6b48a"
+    }
+  }
+}

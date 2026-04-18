@@ -1,0 +1,43 @@
+<header class="site-header" data-section-id="{{ section.id }}">
+  <div class="site-header__inner container">
+    <a href="{{ routes.root_url }}" class="site-header__logo" aria-label="{{ shop.name }}">
+      {%- if section.settings.logo != blank -%}
+        <img src="{{ section.settings.logo | image_url: width: 240 }}"
+             width="{{ section.settings.logo.width | at_most: 120 }}"
+             height="auto"
+             alt="{{ shop.name }}">
+      {%- else -%}
+        <span class="site-header__wordmark">GrayMuzzle<span class="accent">.</span></span>
+      {%- endif -%}
+    </a>
+
+    <nav class="site-header__nav" aria-label="Primary">
+      <ul>
+        {%- for link in section.settings.menu.links -%}
+          <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+        {%- endfor -%}
+      </ul>
+    </nav>
+
+    <div class="site-header__actions">
+      <a href="{{ routes.search_url }}" class="icon-btn" aria-label="Search">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      </a>
+      <button type="button" class="icon-btn cart-toggle" data-cart-toggle aria-label="Cart">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <span class="cart-count" data-cart-count>{{ cart.item_count }}</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    { "type": "image_picker", "id": "logo", "label": "Logo" },
+    { "type": "link_list", "id": "menu", "label": "Menu", "default": "main-menu" }
+  ],
+  "presets": [{ "name": "Header" }]
+}
+{% endschema %}

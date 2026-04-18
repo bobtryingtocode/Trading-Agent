@@ -1,0 +1,48 @@
+<section class="testimonials container" data-section-id="{{ section.id }}">
+  <header class="section-header">
+    <h2>{{ section.settings.heading }}</h2>
+  </header>
+  <div class="testimonials__grid">
+    {%- for block in section.blocks -%}
+      <figure class="testimonial" {{ block.shopify_attributes }}>
+        <div class="testimonial__stars" aria-label="5 out of 5">★★★★★</div>
+        <blockquote>{{ block.settings.quote }}</blockquote>
+        <figcaption>
+          <strong>{{ block.settings.author }}</strong>
+          {%- if block.settings.dog != blank -%}
+            <span> &middot; {{ block.settings.dog }}</span>
+          {%- endif -%}
+        </figcaption>
+      </figure>
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Testimonials",
+  "max_blocks": 6,
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "From dog parents like you" }
+  ],
+  "blocks": [
+    {
+      "type": "quote",
+      "name": "Quote",
+      "settings": [
+        { "type": "textarea", "id": "quote", "label": "Quote", "default": "Our 13-year-old Lab Bailey sleeps through the night for the first time in a year." },
+        { "type": "text", "id": "author", "label": "Author", "default": "Megan H." },
+        { "type": "text", "id": "dog", "label": "Dog", "default": "Bailey, 13" }
+      ]
+    }
+  ],
+  "presets": [{
+    "name": "Testimonials",
+    "blocks": [
+      { "type": "quote" },
+      { "type": "quote", "settings": { "quote": "The car ramp gave us our weekend drives back. Duke used to refuse to get in.", "author": "Rick P.", "dog": "Duke, 11" } },
+      { "type": "quote", "settings": { "quote": "Calming vest worked the first thunderstorm. Finally.", "author": "Priya S.", "dog": "Mochi, 9" } }
+    ]
+  }]
+}
+{% endschema %}

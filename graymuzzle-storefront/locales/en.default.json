@@ -1,0 +1,25 @@
+{
+  "general": {
+    "meta": {
+      "tags": "Tagged \"{{ tags }}\"",
+      "page": "Page {{ page }}"
+    },
+    "search": { "placeholder": "Search", "submit": "Search" },
+    "404": { "title": "We can't seem to fetch that page.", "subtext": "Try our homepage or the catalog." }
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "Add to cart",
+      "sold_out": "Sold out",
+      "unavailable": "Unavailable"
+    }
+  },
+  "cart": {
+    "general": {
+      "title": "Your cart",
+      "empty": "Your cart is empty",
+      "subtotal": "Subtotal",
+      "checkout": "Checkout"
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "type": "footer",
+  "name": "Footer group",
+  "sections": {
+    "trust": { "type": "trust-row" },
+    "footer": { "type": "footer" }
+  },
+  "order": ["trust", "footer"]
+}

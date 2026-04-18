@@ -1,0 +1,48 @@
+<div class="cart-drawer" data-cart-drawer aria-hidden="true" role="dialog" aria-label="Cart">
+  <div class="cart-drawer__backdrop" data-cart-close></div>
+  <aside class="cart-drawer__panel">
+    <header class="cart-drawer__header">
+      <h2>Your cart</h2>
+      <button type="button" class="icon-btn" data-cart-close aria-label="Close">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+      </button>
+    </header>
+
+    <div class="cart-drawer__body" data-cart-body>
+      {%- if cart.item_count > 0 -%}
+        <ul class="cart-items">
+          {%- for item in cart.items -%}
+            <li class="cart-item">
+              <img src="{{ item.image | image_url: width: 160 }}" alt="{{ item.image.alt | escape }}" width="80" height="80" loading="lazy">
+              <div class="cart-item__body">
+                <a href="{{ item.url }}" class="cart-item__title">{{ item.product.title }}</a>
+                {%- if item.variant.title != 'Default Title' -%}
+                  <p class="cart-item__variant">{{ item.variant.title }}</p>
+                {%- endif -%}
+                <p class="cart-item__price">{{ item.line_price | money }}</p>
+              </div>
+              <form action="{{ routes.cart_change_url }}" method="post" data-ajax-cart>
+                <input type="hidden" name="id" value="{{ item.key }}">
+                <input type="hidden" name="quantity" value="0">
+                <button type="submit" class="link-btn" aria-label="Remove">Remove</button>
+              </form>
+            </li>
+          {%- endfor -%}
+        </ul>
+      {%- else -%}
+        <p class="cart-drawer__empty">Your cart is empty. Our senior pups are waiting.</p>
+      {%- endif -%}
+    </div>
+
+    {%- if cart.item_count > 0 -%}
+      <footer class="cart-drawer__footer">
+        <div class="cart-drawer__row">
+          <span>Subtotal</span>
+          <strong>{{ cart.total_price | money }}</strong>
+        </div>
+        <a href="{{ routes.cart_url }}/checkout" class="btn btn--primary btn--full">Checkout</a>
+        <p class="cart-drawer__note">Free US shipping on orders $49+</p>
+      </footer>
+    {%- endif -%}
+  </aside>
+</div>

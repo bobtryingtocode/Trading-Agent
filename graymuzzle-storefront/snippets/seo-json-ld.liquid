@@ -1,0 +1,40 @@
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": {{ shop.name | json }},
+  "url": {{ shop.secure_url | json }},
+  "logo": {{ shop.secure_url | append: '/assets/logo.svg' | json }},
+  "legalName": "Revvy LLC",
+  "description": "GrayMuzzle Co. — senior dog wellness, comfort, and mobility products.",
+  "sameAs": [
+    "https://www.tiktok.com/@graymuzzleco",
+    "https://www.instagram.com/graymuzzleco"
+  ]
+}
+</script>
+
+{%- if template contains 'product' and product -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": {{ product.title | json }},
+  "image": [
+    {%- for img in product.images limit: 5 -%}
+      {{ img | image_url: width: 1200 | prepend: 'https:' | json }}{%- unless forloop.last -%},{%- endunless -%}
+    {%- endfor -%}
+  ],
+  "description": {{ product.description | strip_html | truncate: 5000 | json }},
+  "sku": {{ product.selected_or_first_available_variant.sku | json }},
+  "brand": { "@type": "Brand", "name": "GrayMuzzle Co." },
+  "offers": {
+    "@type": "Offer",
+    "url": {{ shop.secure_url | append: product.url | json }},
+    "priceCurrency": {{ cart.currency.iso_code | json }},
+    "price": {{ product.selected_or_first_available_variant.price | money_without_currency | replace: ',', '' | json }},
+    "availability": {%- if product.available -%}"https://schema.org/InStock"{%- else -%}"https://schema.org/OutOfStock"{%- endif -%}
+  }
+}
+</script>
+{%- endif -%}
